@@ -15,6 +15,7 @@
 		5A2485961ADC53EE007D3D08 /* MultiVCDemo2ResearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2485951ADC53EE007D3D08 /* MultiVCDemo2ResearchTests.m */; };
 		5A2485A11ADC5625007D3D08 /* MainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2485A01ADC5625007D3D08 /* MainTBC.m */; };
 		5A2485A41ADC56C9007D3D08 /* MainNC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2485A31ADC56C9007D3D08 /* MainNC.m */; };
+		5A2485A71ADC57D0007D3D08 /* TransportsParentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2485A61ADC57D0007D3D08 /* TransportsParentVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		5A2485A01ADC5625007D3D08 /* MainTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTBC.m; sourceTree = "<group>"; };
 		5A2485A21ADC56C9007D3D08 /* MainNC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNC.h; sourceTree = "<group>"; };
 		5A2485A31ADC56C9007D3D08 /* MainNC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNC.m; sourceTree = "<group>"; };
+		5A2485A51ADC57D0007D3D08 /* TransportsParentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportsParentVC.h; sourceTree = "<group>"; };
+		5A2485A61ADC57D0007D3D08 /* TransportsParentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportsParentVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				5A2485A01ADC5625007D3D08 /* MainTBC.m */,
 				5A2485A21ADC56C9007D3D08 /* MainNC.h */,
 				5A2485A31ADC56C9007D3D08 /* MainNC.m */,
+				5A2485A51ADC57D0007D3D08 /* TransportsParentVC.h */,
+				5A2485A61ADC57D0007D3D08 /* TransportsParentVC.m */,
 				5A2485831ADC53EE007D3D08 /* Main.storyboard */,
 				5A2485861ADC53EE007D3D08 /* Images.xcassets */,
 				5A2485881ADC53EE007D3D08 /* LaunchScreen.xib */,
@@ -226,6 +231,7 @@
 			files = (
 				5A24857F1ADC53EE007D3D08 /* AppDelegate.m in Sources */,
 				5A2485A41ADC56C9007D3D08 /* MainNC.m in Sources */,
+				5A2485A71ADC57D0007D3D08 /* TransportsParentVC.m in Sources */,
 				5A2485A11ADC5625007D3D08 /* MainTBC.m in Sources */,
 				5A24857C1ADC53EE007D3D08 /* main.m in Sources */,
 			);
