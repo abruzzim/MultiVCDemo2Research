@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--MainTBC-->
         <scene sceneID="UIB-1f-2tq">
             <objects>
-                <tabBarController id="kMi-Sb-3Ab" sceneMemberID="viewController">
+                <tabBarController id="kMi-Sb-3Ab" customClass="MainTBC" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Yyl-Rr-VmB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="544" y="458"/>
         </scene>
-        <!--Item-->
+        <!--MainNC-->
         <scene sceneID="uTc-h2-BOg">
             <objects>
-                <navigationController id="ddw-TA-0JU" sceneMemberID="viewController">
+                <navigationController title="MainNC" id="ddw-TA-0JU" customClass="MainNC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="hp6-gg-0b6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5rE-Gl-Z7i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="1216" y="458"/>
         </scene>
-        <!--View Controller-->
+        <!--Transports ParentVC-->
         <scene sceneID="McV-eO-jvI">
             <objects>
-                <viewController id="Hfr-c8-rgu" sceneMemberID="viewController">
+                <viewController id="Hfr-c8-rgu" customClass="TransportsParentVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aWb-HJ-4qY"/>
                         <viewControllerLayoutGuide type="bottom" id="yCM-nB-rWY"/>
