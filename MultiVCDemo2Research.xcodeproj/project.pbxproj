@@ -13,6 +13,7 @@
 		5A2485871ADC53EE007D3D08 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A2485861ADC53EE007D3D08 /* Images.xcassets */; };
 		5A24858A1ADC53EE007D3D08 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A2485881ADC53EE007D3D08 /* LaunchScreen.xib */; };
 		5A2485961ADC53EE007D3D08 /* MultiVCDemo2ResearchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2485951ADC53EE007D3D08 /* MultiVCDemo2ResearchTests.m */; };
+		5A2485A11ADC5625007D3D08 /* MainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2485A01ADC5625007D3D08 /* MainTBC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,8 @@
 		5A24858F1ADC53EE007D3D08 /* MultiVCDemo2ResearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiVCDemo2ResearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2485941ADC53EE007D3D08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A2485951ADC53EE007D3D08 /* MultiVCDemo2ResearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiVCDemo2ResearchTests.m; sourceTree = "<group>"; };
+		5A24859F1ADC5625007D3D08 /* MainTBC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTBC.h; sourceTree = "<group>"; };
+		5A2485A01ADC5625007D3D08 /* MainTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTBC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 			children = (
 				5A24857D1ADC53EE007D3D08 /* AppDelegate.h */,
 				5A24857E1ADC53EE007D3D08 /* AppDelegate.m */,
+				5A24859F1ADC5625007D3D08 /* MainTBC.h */,
+				5A2485A01ADC5625007D3D08 /* MainTBC.m */,
 				5A2485831ADC53EE007D3D08 /* Main.storyboard */,
 				5A2485861ADC53EE007D3D08 /* Images.xcassets */,
 				5A2485881ADC53EE007D3D08 /* LaunchScreen.xib */,
@@ -215,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A24857F1ADC53EE007D3D08 /* AppDelegate.m in Sources */,
+				5A2485A11ADC5625007D3D08 /* MainTBC.m in Sources */,
 				5A24857C1ADC53EE007D3D08 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
