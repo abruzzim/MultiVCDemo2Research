@@ -10,9 +10,9 @@
 #import "LeftVC.h"             // 1st Child VC.
 #import "RightVC.h"            // 2nd Child VC.
 
-#define CHILD1_WIDTH_FACTOR (1.0/3.0)
+#define CHILD1_WIDTH_FACTOR (2.0/5.0)
 #define CHILD1_HEIGHT_FACTOR (1.0/1.0)
-#define CHILD2_WIDTH_FACTOR (2.0/3.0)
+#define CHILD2_WIDTH_FACTOR (3.0/5.0)
 #define CHILD2_HEIGHT_FACTOR (1.0/1.0)
 
 @interface TransportsParentVC ()
@@ -21,6 +21,8 @@
 @property CGFloat navBarFrameSizeHeight;
 @property CGFloat toolBarFrameSizeHeight;
 @property CGFloat tabBarFrameSizeHeight;
+@property CGFloat totalUnusableHeight;
+@property CGFloat topOffset;
 
 @property (strong, nonatomic) LeftVC *childVC1;
 @property BOOL isChild1Visible;
@@ -40,6 +42,22 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     [self addToolbarItems];
     [self getFrameSizeHeights];
+    
+    // Offset height from the top of the view.
+    //
+    self.topOffset = (
+                      self.statusBarFrameSizeHeight +
+                      self.navBarFrameSizeHeight
+                      );
+    
+    // Total unusable view height.
+    //
+    self.totalUnusableHeight = (
+                                self.statusBarFrameSizeHeight +
+                                self.navBarFrameSizeHeight +
+                                self.toolBarFrameSizeHeight +
+                                self.tabBarFrameSizeHeight
+                                );
 
     // Child 1 Demo VC.
     //
@@ -47,9 +65,9 @@
     self.childVC1.view.frame =
         CGRectMake(
                    0,
-                   (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                   roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                   roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD1_HEIGHT_FACTOR)
+                   (_topOffset),
+                   roundf((self.view.frame.size.width) * CHILD1_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                    );
     self.childVC1.view.backgroundColor = [UIColor orangeColor];
     self.isChild1Visible = YES;
@@ -62,9 +80,9 @@
     self.childVC2.view.frame =
         CGRectMake(
                    roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                   (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                   roundf(self.view.frame.size.width * CHILD2_WIDTH_FACTOR),
-                   roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD2_HEIGHT_FACTOR)
+                   (_topOffset),
+                   roundf((self.view.frame.size.width) * CHILD2_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
                    );
     self.childVC2.view.backgroundColor = [UIColor purpleColor];
     self.isChild2Visible = YES;
@@ -77,7 +95,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (void)viewWillLayoutSubviews {
     NSLog(@"%%TransportsParentVC-I-TRACE, -viewWillLayoutSubviews called.");
