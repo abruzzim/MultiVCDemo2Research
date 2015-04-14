@@ -25,7 +25,7 @@
         <!--MainNC-->
         <scene sceneID="uTc-h2-BOg">
             <objects>
-                <navigationController title="MainNC" id="ddw-TA-0JU" customClass="MainNC" sceneMemberID="viewController">
+                <navigationController title="MainNC" toolbarHidden="NO" id="ddw-TA-0JU" customClass="MainNC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="hp6-gg-0b6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5rE-Gl-Z7i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -48,7 +48,7 @@
                         <viewControllerLayoutGuide type="bottom" id="yCM-nB-rWY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yHQ-5p-ena">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
