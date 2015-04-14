@@ -18,8 +18,10 @@
 @property CGFloat navBarFrameSizeHeight;
 @property CGFloat toolBarFrameSizeHeight;
 @property CGFloat tabBarFrameSizeHeight;
+
 @property (strong, nonatomic) LeftVC *childVC1;
 @property BOOL isChild1Visible;
+
 - (void)showViewProperties:(UIView *)theView;
 
 @end
@@ -28,6 +30,7 @@
 
 - (void)viewDidLoad {
     NSLog(@"%%TransportsParentVC-I-TRACE, -viewDidLoad called.");
+    
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     [self addToolbarItems];
@@ -59,19 +62,21 @@
 - (void)viewWillLayoutSubviews {
     NSLog(@"%%TransportsParentVC-I-TRACE, -viewWillLayoutSubviews called.");
     
-    self.childVC1.view.frame =
-        CGRectMake(
-                   0,
-                   (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                   roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                   roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD1_HEIGHT_FACTOR)
-                   );
+    if (self.isChild1Visible) {
+        self.childVC1.view.frame =
+            CGRectMake(
+                       0,
+                       (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
+                       roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD1_HEIGHT_FACTOR)
+                       );
+    }
 }
 
 - (void)addToolbarItems {
     NSLog(@"%%TransportsParentVC-I-TRACE, -addToolbarItems called.");
     
-    UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithTitle:@"Btn1"
+    UIBarButtonItem *btn1 = [[UIBarButtonItem alloc] initWithTitle:@"Child1 Toggle"
                                                              style:UIBarButtonItemStyleDone
                                                             target:self
                                                             action:@selector(doButton1:)];
@@ -102,10 +107,71 @@
 
 - (void)doButton1:(UIButton *)sender {
     NSLog(@"%%TransportsParentVC-I-TRACE, -doButton1 called.");
+    
+    if (self.isChild1Visible) {
+        
+        CGPoint newCenter;
+        
+        // Shift the subview left by its longest dimension.
+        //
+        if (self.view.frame.size.height > self.view.frame.size.width) {
+            // If the superview is in portrait orientation...
+            
+            if (self.childVC1.view.frame.size.height > self.childVC1.view.frame.size.width) {
+                // ...and if the subview is higher than it is wide,
+                // then shift the subview left by its height.
+                newCenter = CGPointMake(self.childVC1.view.center.x - self.childVC1.view.frame.size.height, self.childVC1.view.center.y);
+            } else {
+                // ...and if the subview is wider than it is high,
+                // then shift the subview left by its width.
+                newCenter = CGPointMake(self.childVC1.view.center.x - self.childVC1.view.frame.size.width, self.childVC1.view.center.y);
+            }
+            
+        } else {
+            // Else if the superview is in landscape orientation...
+            
+            if (self.childVC1.view.frame.size.width > self.childVC1.view.frame.size.height) {
+                // ...and if the subview is wider than it is high,
+                // then shift the subview left by its width.
+                newCenter = CGPointMake(self.childVC1.view.center.x - self.childVC1.view.frame.size.width, self.childVC1.view.center.y);
+            } else {
+                // ...and if the subview is higher than it is wide,
+                // then shift the subview left by its height.
+                newCenter = CGPointMake(self.childVC1.view.center.x - self.childVC1.view.frame.size.height, self.childVC1.view.center.y);
+            }
+            
+        }
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            self.childVC1.view.center = newCenter;
+        }];
+        
+    } else {
+        
+        CGRect newFrame;
+        
+        // Resize and shift the subview right to its assigned position.
+        //
+        newFrame =
+            CGRectMake(
+                       0,
+                       (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
+                       roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD1_HEIGHT_FACTOR)
+                       );
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            self.childVC1.view.frame = newFrame;
+        }];
+        
+    }
+    
+    self.isChild1Visible = !self.isChild1Visible;
 }
 
 - (void)doButton2:(UIButton *)sender {
     NSLog(@"%%TransportsParentVC-I-TRACE, -doButton2 called.");
+    
     [self showViewProperties:self.childVC1.view];
 }
 
@@ -119,6 +185,7 @@
 
 - (void)getFrameSizeHeights {
     NSLog(@"%%TransportsParentVC-I-TRACE, -currentFrameSizeHeights called.");
+    
     self.statusBarFrameSizeHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     self.navBarFrameSizeHeight = self.navigationController.navigationBar.frame.size.height;
     self.toolBarFrameSizeHeight = self.navigationController.toolbar.frame.size.height;
