@@ -21,6 +21,7 @@
 @property CGFloat navBarFrameSizeHeight;
 @property CGFloat toolBarFrameSizeHeight;
 @property CGFloat tabBarFrameSizeHeight;
+@property CGFloat totalUnusableWidth;
 @property CGFloat totalUnusableHeight;
 @property CGFloat topOffset;
 
@@ -46,22 +47,8 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     [self addToolbarItems];
     [self getFrameSizeHeights];
-    
-    // Offset height from the top of the view.
-    //
-    self.topOffset = (
-                      self.statusBarFrameSizeHeight +
-                      self.navBarFrameSizeHeight
-                      );
-    
-    // Total unusable view height.
-    //
-    self.totalUnusableHeight = (
-                                self.statusBarFrameSizeHeight +
-                                self.navBarFrameSizeHeight +
-                                self.toolBarFrameSizeHeight +
-                                self.tabBarFrameSizeHeight
-                                );
+    [self getTopOffset];
+    [self getUnusableDimensions];
 
     // Child 1 Demo VC. --------------------------------------------------------------------------------|
     //
@@ -70,7 +57,7 @@
         CGRectMake(
                    0,
                    (_topOffset),
-                   roundf((self.view.frame.size.width) * CHILD1_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD1_WIDTH_FACTOR),
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                    );
     self.childVC1.view.backgroundColor = [UIColor orangeColor];
@@ -125,7 +112,7 @@
         CGRectMake(
                    roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
                    (_topOffset),
-                   roundf((self.view.frame.size.width) * CHILD2_WIDTH_FACTOR),
+                   roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
                    );
     self.childVC2.view.backgroundColor = [UIColor purpleColor];
@@ -187,9 +174,9 @@
         self.childVC1.view.frame =
             CGRectMake(
                        0,
-                       (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                       roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD1_HEIGHT_FACTOR)
+                       (_topOffset),
+                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD1_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                        );
     }
     
@@ -197,9 +184,9 @@
         self.childVC2.view.frame =
             CGRectMake(
                        roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                       (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                       roundf(self.view.frame.size.width * CHILD2_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD2_HEIGHT_FACTOR)
+                       (_topOffset),
+                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
                        );
     }
 }
@@ -286,9 +273,9 @@
         newFrame =
             CGRectMake(
                        0,
-                       (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                       roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD1_HEIGHT_FACTOR)
+                       (_topOffset),
+                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD1_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                        );
         
         [UIView animateWithDuration:0.3f animations:^{
@@ -356,9 +343,9 @@
         newFrame =
             CGRectMake(
                        roundf(self.view.frame.size.width * CHILD1_WIDTH_FACTOR),
-                       (_statusBarFrameSizeHeight+_navBarFrameSizeHeight),
-                       roundf(self.view.frame.size.width * CHILD2_WIDTH_FACTOR),
-                       roundf((self.view.frame.size.height - (_statusBarFrameSizeHeight+_navBarFrameSizeHeight+_toolBarFrameSizeHeight+_tabBarFrameSizeHeight)) * CHILD2_HEIGHT_FACTOR)
+                       (_topOffset),
+                       roundf((self.view.frame.size.width - (_totalUnusableWidth)) * CHILD2_WIDTH_FACTOR),
+                       roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
                        );
         
         [UIView animateWithDuration:0.3f animations:^{
@@ -383,6 +370,31 @@
     self.navBarFrameSizeHeight = self.navigationController.navigationBar.frame.size.height;
     self.toolBarFrameSizeHeight = self.navigationController.toolbar.frame.size.height;
     self.tabBarFrameSizeHeight = self.tabBarController.tabBar.frame.size.height;
+}
+
+- (void)getTopOffset {
+    NSLog(@"%%TransportsParentVC-I-TRACE, -getTopOffset called.");
+    
+    // Offset height from the top of the view.
+    //
+    self.topOffset = (
+                      self.statusBarFrameSizeHeight +
+                      self.navBarFrameSizeHeight
+                      );
+}
+
+- (void)getUnusableDimensions {
+    NSLog(@"%%TransportsParentVC-I-TRACE, -getUnusableDimensions called.");
+    
+    // Total unusable view dimensions.
+    //
+    self.totalUnusableWidth = (0);
+    self.totalUnusableHeight = (
+                                self.statusBarFrameSizeHeight +
+                                self.navBarFrameSizeHeight +
+                                self.toolBarFrameSizeHeight +
+                                self.tabBarFrameSizeHeight
+                                );
 }
 
 - (void)showViewProperties:(UIView *)aView {
