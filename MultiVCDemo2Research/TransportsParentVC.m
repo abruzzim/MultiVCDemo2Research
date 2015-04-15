@@ -25,8 +25,12 @@
 @property CGFloat topOffset;
 
 @property (strong, nonatomic) LeftVC *childVC1;
+@property (strong, nonatomic) UIView *child1VertCenterLine;
+@property (strong, nonatomic) UIView *child1HorizCenterLine;
 @property BOOL isChild1Visible;
 @property (strong, nonatomic) RightVC *childVC2;
+@property (strong, nonatomic) UIView *child2VertCenterLine;
+@property (strong, nonatomic) UIView *child2HorizCenterLine;
 @property BOOL isChild2Visible;
 
 - (void)showViewProperties:(UIView *)theView;
@@ -59,7 +63,7 @@
                                 self.tabBarFrameSizeHeight
                                 );
 
-    // Child 1 Demo VC.
+    // Child 1 Demo VC. --------------------------------------------------------------------------------|
     //
     self.childVC1 = [[LeftVC alloc] init];
     self.childVC1.view.frame =
@@ -70,11 +74,51 @@
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD1_HEIGHT_FACTOR)
                    );
     self.childVC1.view.backgroundColor = [UIColor orangeColor];
+    
+    /**
+     * Child 1 Vertical Center Line
+     */
+    self.child1VertCenterLine = [[UIView alloc] initWithFrame:
+                                 CGRectMake(
+                                            roundf(self.childVC1.view.bounds.size.width / 2),
+                                            0.0,
+                                            1.0,
+                                            self.childVC1.view.bounds.size.height
+                                            )];
+    self.child1VertCenterLine.autoresizingMask = (
+                                                  UIViewAutoresizingFlexibleHeight |
+                                                  UIViewAutoresizingFlexibleLeftMargin |
+                                                  UIViewAutoresizingFlexibleRightMargin
+                                                  );
+    self.child1VertCenterLine.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+    [self.childVC1.view addSubview:self.child1VertCenterLine];
+    
+    /**
+     * Child 1 Horizontal Center Line
+     */
+    self.child1HorizCenterLine = [[UIView alloc] initWithFrame:
+                                  CGRectMake(
+                                             0.0,
+                                             roundf(self.childVC1.view.bounds.size.height / 2),
+                                             self.childVC1.view.bounds.size.width,
+                                             1.0
+                                             )];
+    self.child1HorizCenterLine.autoresizingMask = (
+                                                   UIViewAutoresizingFlexibleWidth |
+                                                   UIViewAutoresizingFlexibleTopMargin |
+                                                   UIViewAutoresizingFlexibleBottomMargin
+                                                   );
+    self.child1HorizCenterLine.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+    [self.childVC1.view addSubview:self.child1HorizCenterLine];
+    
+    /**
+     *
+     */
     self.isChild1Visible = YES;
     [self addChildViewController:self.childVC1];
     [self.view addSubview:self.childVC1.view];
     
-    // Child 2 Demo VC.
+    // Child 2 Demo VC. --------------------------------------------------------------------------------|
     //
     self.childVC2 = [[RightVC alloc] init];
     self.childVC2.view.frame =
@@ -85,6 +129,46 @@
                    roundf((self.view.frame.size.height - (_totalUnusableHeight)) * CHILD2_HEIGHT_FACTOR)
                    );
     self.childVC2.view.backgroundColor = [UIColor purpleColor];
+    
+    /**
+     * Child 2 Vertical Center Line
+     */
+    self.child2VertCenterLine = [[UIView alloc] initWithFrame:
+                                     CGRectMake(
+                                                roundf(self.childVC2.view.bounds.size.width / 2),
+                                                0.0,
+                                                1.0,
+                                                self.childVC2.view.bounds.size.height
+                                                )];
+    self.child2VertCenterLine.autoresizingMask = (
+                                                      UIViewAutoresizingFlexibleHeight |
+                                                      UIViewAutoresizingFlexibleLeftMargin |
+                                                      UIViewAutoresizingFlexibleRightMargin
+                                                      );
+    self.child2VertCenterLine.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+    [self.childVC2.view addSubview:self.child2VertCenterLine];
+    
+    /**
+     * Child 2 Horizontal Center Line
+     */
+    self.child2HorizCenterLine = [[UIView alloc] initWithFrame:
+                                       CGRectMake(
+                                                  0.0,
+                                                  roundf(self.childVC2.view.bounds.size.height / 2),
+                                                  self.childVC2.view.bounds.size.width,
+                                                  1.0
+                                                  )];
+    self.child2HorizCenterLine.autoresizingMask = (
+                                                        UIViewAutoresizingFlexibleWidth |
+                                                        UIViewAutoresizingFlexibleTopMargin |
+                                                        UIViewAutoresizingFlexibleBottomMargin
+                                                        );
+    self.child2HorizCenterLine.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+    [self.childVC2.view addSubview:self.child2HorizCenterLine];
+    
+    /**
+     *
+     */
     self.isChild2Visible = YES;
     [self addChildViewController:self.childVC2];
     [self.view addSubview:self.childVC2.view];
